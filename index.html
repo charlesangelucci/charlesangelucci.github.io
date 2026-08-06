@@ -167,9 +167,8 @@
   }
   .role strong { color: var(--ink); font-weight: 600; }
 
-  /* PHOTO: replace the <div class="portrait"> in the markup below with
-     <img class="portrait" src="photo.jpg" alt="Charles Angelucci">
-     A 2:2.4 crop at roughly 400x480px or larger works best. */
+  /* PHOTO: photo.webp, 360x360. object-fit trims the sides to the portrait
+     ratio; adjust object-position if a future photo is off-centre. */
   .portrait {
     width: 132px;
     height: 158px;
@@ -469,8 +468,7 @@
           MIT Sloan School of Management
         </p>
       </div>
-      <!-- PHOTO: replace this div with <img class="portrait" src="photo.jpg" alt="Charles Angelucci"> -->
-      <div class="portrait" aria-hidden="true">CA</div>
+      <img class="portrait" src="photo.webp" alt="Charles Angelucci" width="132" height="158">
     </div>
 
     <!-- PLACEHOLDER: rewrite this in your own words. -->

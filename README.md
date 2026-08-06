@@ -21,21 +21,20 @@ Open `index.html` in any editor. Everything lives in one file:
 Two spots are marked `PLACEHOLDER` / `PHOTO` in comments and need your input:
 the one-line research statement, and the portrait.
 
-### Adding a photo
+### Replacing the photo
 
-Drop the image in this folder as `photo.jpg`, then replace:
+`photo.webp` (360×360) sits next to `index.html`. To swap it, overwrite that file
+— no markup change needed.
 
-```html
-<div class="portrait" aria-hidden="true">CA</div>
+The slot is 132×158, so `object-fit: cover` trims the sides of a square source.
+If a future photo is off-centre, add `object-position` to the `.portrait` rule:
+
+```css
+.portrait { object-position: 50% 30%; }   /* nudge the crop upward */
 ```
 
-with:
-
-```html
-<img class="portrait" src="photo.jpg" alt="Charles Angelucci">
-```
-
-A 2:2.4 crop, around 400×480px or larger, works best.
+Aim for at least 300px on the short edge so it stays sharp on high-density
+displays.
 
 ### Adding a paper
 
