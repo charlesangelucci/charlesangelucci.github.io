@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Charles Angelucci</title>
+<meta name="description" content="Charles Angelucci is Class of 1957 Career Development Professor and Assistant Professor of Applied Economics at the MIT Sloan School of Management, working on political economy, organizational economics, and micro theory.">
+<meta name="author" content="Charles Angelucci">
+
+<!-- Set this to your final domain once the DNS is live. -->
+<link rel="canonical" href="https://charlesangelucci.com/">
+
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Charles Angelucci">
+<meta property="og:description" content="Political economy, organizational economics, and micro theory at MIT Sloan.">
+<meta property="og:url" content="https://charlesangelucci.com/">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231E4B3A'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='Palatino,Georgia,serif' fill='%23E6EDE8'>A</text></svg>">
+
+<style>
+  /* ---- tokens ---------------------------------------------------------- */
+  :root {
+    --paper:       #F7F7F4;
+    --surface:     #FFFFFF;
+    --ink:         #15191A;
+    --ink-2:       #545B56;
+    --ink-3:       #7B827C;
+    --rule:        #DFE0DA;
+    --rule-strong: #C4C7BE;
+    --accent:      #1E4B3A;
+    --accent-2:    #2C6B52;
+    --accent-soft: #E6EDE8;
+
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
+    --sans:  system-ui, "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono:  "Cascadia Mono", "SF Mono", ui-monospace, Consolas, "Liberation Mono", monospace;
+
+    --rail: 6.5rem;
+    --measure: 40rem;
+
+    color-scheme: light dark;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper:       #121513;
+      --surface:     #191D1A;
+      --ink:         #E8EAE5;
+      --ink-2:       #A2AAA3;
+      --ink-3:       #79817A;
+      --rule:        #2B302C;
+      --rule-strong: #3C433D;
+      --accent:      #86BFA2;
+      --accent-2:    #A3D3B7;
+      --accent-soft: #1D2A23;
+    }
+  }
+
+  /* ---- base ------------------------------------------------------------ */
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+  }
+
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:hover { color: var(--accent-2); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+
+  .wrap {
+    max-width: calc(var(--rail) + var(--measure) + 3rem);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .skip {
+    position: absolute;
+    left: -9999px;
+    background: var(--accent);
+    color: var(--paper);
+    padding: 0.5rem 1rem;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+  }
+  .skip:focus { left: 0.5rem; top: 0.5rem; z-index: 20; }
+
+  /* ---- top bar --------------------------------------------------------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+  }
+  @supports (backdrop-filter: blur(8px)) {
+    .topbar {
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(8px);
+    }
+  }
+  .topbar .wrap {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 0.85rem;
+  }
+  .topbar-name {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .topbar nav {
+    display: flex;
+    gap: 1.4rem;
+    font-family: var(--sans);
+    font-size: 0.82rem;
+  }
+  .topbar nav a { color: var(--ink-2); text-decoration: none; }
+  .topbar nav a:hover { color: var(--accent); }
+  @media (max-width: 33rem) {
+    .topbar-name { display: none; }
+    .topbar .wrap { justify-content: center; }
+    .topbar nav { gap: 1.15rem; }
+  }
+
+  /* ---- masthead -------------------------------------------------------- */
+  .masthead { padding-block: 4.5rem 3rem; }
+
+  .masthead-top {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .role {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 1.1rem 0 0;
+    max-width: 30rem;
+  }
+  .role strong { color: var(--ink); font-weight: 600; }
+
+  /* PHOTO: replace the <div class="portrait"> in the markup below with
+     <img class="portrait" src="photo.jpg" alt="Charles Angelucci">
+     A 2:2.4 crop at roughly 400x480px or larger works best. */
+  .portrait {
+    width: 132px;
+    height: 158px;
+    object-fit: cover;
+    background: var(--accent-soft);
+    border: 1px solid var(--rule-strong);
+    display: grid;
+    place-items: center;
+    font-family: var(--serif);
+    font-size: 2.1rem;
+    color: var(--accent);
+    letter-spacing: 0.02em;
+  }
+  @media (max-width: 40rem) {
+    .masthead-top { grid-template-columns: 1fr; }
+    .portrait { width: 104px; height: 124px; order: -1; }
+  }
+
+  .statement {
+    max-width: var(--measure);
+    margin: 2.4rem 0 0;
+    font-size: 1.16rem;
+    line-height: 1.55;
+  }
+
+  .fields {
+    font-family: var(--sans);
+    font-size: 0.84rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 1.6rem 0 0;
+  }
+
+  .affil {
+    list-style: none;
+    padding: 1.3rem 0 0;
+    margin: 2.4rem 0 0;
+    max-width: var(--measure);
+    display: grid;
+    gap: 0.45rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    border-top: 1px solid var(--rule);
+  }
+  .affil li { display: flex; gap: 0.6rem; }
+  .affil li::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 5px; height: 5px;
+    margin-top: 0.62em;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ---- sections -------------------------------------------------------- */
+  section { padding-block: 3.2rem; border-top: 1px solid var(--rule); }
+
+  .section-grid {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 0 2.5rem;
+  }
+  @media (max-width: 46rem) {
+    .section-grid { grid-template-columns: 1fr; gap: 0; }
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0.35rem 0 0;
+    position: sticky;
+    top: 4.2rem;
+    align-self: start;
+  }
+  @media (max-width: 46rem) {
+    h2 { position: static; margin-bottom: 1.6rem; }
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 1.4rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .group + .group { margin-top: 3rem; }
+
+  /* ---- entries --------------------------------------------------------- */
+  .entries { display: grid; gap: 1.75rem; max-width: var(--measure); }
+
+  .entry {
+    display: grid;
+    grid-template-columns: 3.1rem minmax(0, 1fr);
+    gap: 0 1.1rem;
+  }
+  .entry .year {
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    padding-top: 0.32em;
+  }
+  @media (max-width: 30rem) {
+    .entry { grid-template-columns: 1fr; gap: 0.3rem; }
+    .entry .year { padding-top: 0; }
+  }
+
+  .entry-title {
+    font-family: var(--serif);
+    font-size: 1.08rem;
+    line-height: 1.4;
+    margin: 0;
+    font-weight: 400;
+    text-wrap: pretty;
+  }
+  .entry-title a { color: var(--ink); text-decoration-color: var(--rule-strong); }
+  .entry-title a:hover { color: var(--accent); text-decoration-color: currentColor; }
+
+  .entry-meta {
+    font-family: var(--sans);
+    font-size: 0.855rem;
+    line-height: 1.5;
+    color: var(--ink-2);
+    margin: 0.3rem 0 0;
+  }
+
+  .venue { color: var(--accent); font-weight: 600; }
+
+  .status {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    border: 1px solid var(--rule-strong);
+    border-radius: 2px;
+    padding: 0.05rem 0.4rem;
+    white-space: nowrap;
+  }
+  .status.is-live { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  .entry-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 0.4rem;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+  }
+
+  /* ---- teaching -------------------------------------------------------- */
+  .course { max-width: var(--measure); }
+  .course + .course { margin-top: 1.4rem; }
+  .course-name { font-size: 1.02rem; margin: 0; font-weight: 400; }
+  .course-meta {
+    font-family: var(--sans);
+    font-size: 0.845rem;
+    color: var(--ink-2);
+    margin: 0.15rem 0 0;
+  }
+  .award {
+    font-family: var(--sans);
+    font-size: 0.845rem;
+    color: var(--accent);
+    margin: 0.25rem 0 0;
+  }
+
+  /* ---- contact --------------------------------------------------------- */
+  .prose { max-width: var(--measure); margin: 0; }
+
+  .contact-list {
+    max-width: var(--measure);
+    display: grid;
+    gap: 0.8rem;
+    font-family: var(--sans);
+    font-size: 0.92rem;
+  }
+  .contact-list > div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; }
+  .contact-key {
+    color: var(--ink-3);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding-top: 0.15em;
+  }
+  @media (max-width: 30rem) {
+    .contact-list > div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+
+  footer {
+    border-top: 1px solid var(--rule);
+    padding-block: 2rem 3.5rem;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+  }
+
+  /* ---- load-in --------------------------------------------------------- */
+  @media (prefers-reduced-motion: no-preference) {
+    .masthead > * { animation: rise 0.5s ease-out both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: none; }
+    }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#research">Skip to research</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="topbar-name" href="#top">Charles Angelucci</a>
+    <nav aria-label="Sections">
+      <a href="#research">Research</a>
+      <a href="#teaching">Teaching</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<div id="top" class="wrap">
+
+  <header class="masthead">
+    <div class="masthead-top">
+      <div>
+        <h1>Charles Angelucci</h1>
+        <p class="role">
+          <strong>Class of 1957 Career Development Professor</strong><br>
+          Assistant Professor of Applied Economics<br>
+          MIT Sloan School of Management
+        </p>
+      </div>
+      <!-- PHOTO: replace this div with <img class="portrait" src="photo.jpg" alt="Charles Angelucci"> -->
+      <div class="portrait" aria-hidden="true">CA</div>
+    </div>
+
+    <!-- PLACEHOLDER: rewrite this in your own words. -->
+    <p class="statement">
+      I study how institutions shape the flow of information &mdash; what voters actually
+      know about the news, how media markets supply it, and how organizations
+      structure incentives to acquire and act on what they learn.
+    </p>
+
+    <p class="fields">Political Economy &middot; Organizational Economics &middot; Micro Theory</p>
+
+    <ul class="affil">
+      <li>Faculty Research Fellow, NBER (Political Economy)</li>
+      <li>Research Fellow, CEPR (Organizational Economics; Political Economy)</li>
+      <li>Associate Editor, <em>Journal of the European Economic Association</em></li>
+      <li>Board Member, Society for Institutional and Organizational Economics</li>
+    </ul>
+  </header>
+
+  <section id="research">
+    <div class="section-grid">
+      <h2>Research</h2>
+      <div>
+
+        <div class="group">
+          <h3>Publications</h3>
+          <div class="entries">
+
+            <article class="entry">
+              <div class="year">2024</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3593002">Is Journalistic Truth Dead? Measuring How Informed Voters Are about Political News</a>
+                </p>
+                <p class="entry-meta">
+                  with Andrea Prat &middot; <span class="venue">American Economic Review</span> (lead article)
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3593002">Paper</a>
+                  <a href="https://drive.google.com/file/d/1YhkrTrZt_eRy7hBaGKqagzvd_BnhC4YE/view?usp=share_link">Online appendix</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2024</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3537040">Media Competition and News Diets</a>
+                </p>
+                <p class="entry-meta">
+                  with Julia Cag&eacute; and Mike Sinkinson &middot; <span class="venue">American Economic Journal: Microeconomics</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3537040">Paper</a>
+                  <a href="https://drive.google.com/file/d/1fptADJ_Lqc_6DmVIu9GZGXD64-QH6lmb/view?usp=drive_link">Online appendix</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2022</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_WP.pdf">How Merchant Towns Shaped Parliaments: From the Norman Conquest of England to the Great Reform Act</a>
+                </p>
+                <p class="entry-meta">
+                  with Simone Meraglia and Nico Voigtl&auml;nder &middot; <span class="venue">American Economic Review</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_WP.pdf">Paper</a>
+                  <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_Online_Appendix.pdf">Online appendix</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2022</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=ZGVmYXVsdGRvbWFpbnxjaGFybGVzYW5nZWx1Y2NpfGd4OjQ1Y2RkYWY1MGU3YWM5NTg">Petty Corruption and Citizen Reports</a>
+                </p>
+                <p class="entry-meta">
+                  with Antonio Russo &middot; <span class="venue">International Economic Review</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://docs.google.com/viewer?a=v&amp;pid=sites&amp;srcid=ZGVmYXVsdGRvbWFpbnxjaGFybGVzYW5nZWx1Y2NpfGd4OjQ1Y2RkYWY1MGU3YWM5NTg">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2019</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2335743">Newspapers in Times of Low Advertising Revenues</a>
+                </p>
+                <p class="entry-meta">
+                  with Julia Cag&eacute; &middot; <span class="venue">American Economic Journal: Microeconomics</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2335743">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">&mdash;</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4765066">Multi-Project Collaborations</a>
+                </p>
+                <p class="entry-meta">
+                  with Roi Orzach &middot; <span class="venue">Journal of Political Economy Microeconomics</span> &middot; <span class="status">Accepted</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4765066">Paper</a>
+                  <a href="https://drive.google.com/file/d/1JojUdrRmSxlMEC3bOeK-CouqFb98r46O/view?usp=drive_link">Online appendix</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Working Papers</h3>
+          <div class="entries">
+
+            <article class="entry">
+              <div class="year">2024</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4840653">Organizing a Kingdom</a>
+                </p>
+                <p class="entry-meta">
+                  with Simone Meraglia and Nico Voigtl&auml;nder &middot; <span class="status is-live">R&amp;R, Review of Economic Studies</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4840653">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2024</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895656">Beliefs About Political News in the Run-up to an Election</a>
+                </p>
+                <p class="entry-meta">
+                  with Michel Gutmann and Andrea Prat &middot; <span class="status is-live">R&amp;R, AEJ: Economic Policy</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895656">Paper</a>
+                  <a href="https://drive.google.com/file/d/1vXUWmvUCeAD3L_o6Pxp2IQiwfchFPKRc/view?usp=sharing">Online appendix</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2024</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5087140">Knowledge Acquisition in a High-Stakes Environment: Evidence from the Covid-19 Pandemic</a>
+                </p>
+                <p class="entry-meta">
+                  with Amit K. Khandelwal, Andrea Prat and Ashley Swanson
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5087140">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2024</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4362222">Job Scope and Motivation under Informal Incentives</a>
+                </p>
+                <p class="entry-meta">with Roi Orzach</p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4362222">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2021</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2785733">Self-Reporting Schemes and Employee Wrongdoing</a>
+                </p>
+                <p class="entry-meta">
+                  with Martijn Han &middot; <span class="status is-live">R&amp;R, Journal of Industrial Economics</span>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2785733">Paper</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">2017</div>
+              <div>
+                <p class="entry-title">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2905367">Motivating Agents to Acquire Information</a>
+                </p>
+                <div class="entry-links">
+                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2905367">Paper</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Work in Progress</h3>
+          <div class="entries">
+
+            <article class="entry">
+              <div class="year">&mdash;</div>
+              <div>
+                <p class="entry-title">Policymaking in the American States, 1787&ndash;2020</p>
+                <p class="entry-meta">with Elliott Ash and Nicolas Longuet Marx</p>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">&mdash;</div>
+              <div>
+                <p class="entry-title">How Voters Make up Their Mind</p>
+                <p class="entry-meta">with Michel Gutmann, Vincent Pons and Andrea Prat</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="teaching">
+    <div class="section-grid">
+      <h2>Teaching</h2>
+      <div>
+
+        <div class="group">
+          <h3>MIT Sloan</h3>
+
+          <div class="course">
+            <p class="course-name">Managing the Modern Organization (15.903)</p>
+            <p class="course-meta">MBA &middot; 2021&ndash;2024</p>
+          </div>
+          <div class="course">
+            <p class="course-name">Organizational Economics (14.282)</p>
+            <p class="course-meta">PhD &middot; 2020&ndash;2024</p>
+          </div>
+          <div class="course">
+            <p class="course-name">Advanced Topics in Organizational Economics II (14.284)</p>
+            <p class="course-meta">PhD &middot; 2021&ndash;2024</p>
+          </div>
+          <div class="course">
+            <p class="course-name">Economics and Politics of Media, Internet, and Social Networking Platforms</p>
+            <p class="course-meta">PhD &middot; with Alexey Makarin &middot; 2024&ndash;2025</p>
+          </div>
+          <div class="course">
+            <p class="course-name">Organizational Economics</p>
+            <p class="course-meta">Undergraduate &middot; 2021</p>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3>Columbia Business School</h3>
+
+          <div class="course">
+            <p class="course-name">Economics of Strategic Behavior</p>
+            <p class="course-meta">MBA and EMBA &middot; 2015&ndash;2019</p>
+            <p class="award">Dean&rsquo;s Award for Teaching Excellence in an Elective Course</p>
+          </div>
+          <div class="course">
+            <p class="course-name">Organizational Economics</p>
+            <p class="course-meta">PhD &middot; 2016&ndash;2018</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="section-grid">
+      <h2>CV</h2>
+      <div>
+        <p class="prose">
+          Full curriculum vitae, including education, appointments, grants, and service:
+          <a href="https://drive.google.com/file/d/1nNYaebryS3toDaBRNCTZowmfQANjE79d/view?usp=drive_link">download&nbsp;PDF</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-grid">
+      <h2>Contact</h2>
+      <div class="contact-list">
+        <div>
+          <span class="contact-key">Email</span>
+          <span><a href="mailto:cangeluc@mit.edu">cangeluc@mit.edu</a></span>
+        </div>
+        <div>
+          <span class="contact-key">Post</span>
+          <span>MIT Sloan School of Management<br>100 Main Street, Cambridge, MA 02142</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Charles Angelucci &middot; MIT Sloan School of Management</footer>
+
+</div>
+</body>
+</html>
