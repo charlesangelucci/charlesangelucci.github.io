@@ -23,19 +23,26 @@ the one-line research statement, and the portrait.
 
 ### Replacing the photo
 
-`photo.jpg` (600×600, 41 KB) sits next to `index.html`. To swap it, overwrite that
+`photo.jpg` (720×720, 51 KB) sits next to `index.html`. To swap it, overwrite that
 file — no markup change needed. Keep it square and compressed; a full-resolution
 export straight from a camera will be several megabytes and slow the page down.
 
-The slot is 132×158, so `object-fit: cover` trims the sides of a square source.
-If a future photo is off-centre, add `object-position` to the `.portrait` rule:
+**To resize the portrait**, change one value in the `:root` block:
+
+```css
+--portrait-w: 170px;   /* height follows automatically at 5:6 */
+```
+
+The mobile size is set separately in the `max-width: 40rem` block. If you enlarge
+it much beyond 170px, re-export the photo larger than 720px so it stays sharp on
+high-density displays.
+
+`object-fit: cover` trims the sides of a square source. If a future photo is
+off-centre, add `object-position` to the `.portrait` rule:
 
 ```css
 .portrait { object-position: 50% 30%; }   /* nudge the crop upward */
 ```
-
-Aim for at least 300px on the short edge so it stays sharp on high-density
-displays.
 
 ### Adding a paper
 

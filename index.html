@@ -43,6 +43,7 @@
 
     --rail: 6.5rem;
     --measure: 40rem;
+    --portrait-w: 170px;   /* portrait scales from this; ratio is fixed at 5:6 */
 
     color-scheme: light dark;
   }
@@ -171,24 +172,20 @@
   }
   .role strong { color: var(--ink); font-weight: 600; }
 
-  /* PHOTO: photo.jpg, 600x600. object-fit trims the sides to the portrait
-     ratio; adjust object-position if a future photo is off-centre. */
+  /* PHOTO: photo.jpg, 720x720. Size is driven by --portrait-w above; the 5:6
+     crop is taken by object-fit. Adjust object-position if a future photo
+     is off-centre. */
   .portrait {
-    width: 132px;
-    height: 158px;
+    width: var(--portrait-w);
+    aspect-ratio: 5 / 6;
+    height: auto;
     object-fit: cover;
     background: var(--accent-soft);
     border: 1px solid var(--rule-strong);
-    display: grid;
-    place-items: center;
-    font-family: var(--serif);
-    font-size: 2.1rem;
-    color: var(--accent);
-    letter-spacing: 0.02em;
   }
   @media (max-width: 40rem) {
     .masthead-top { grid-template-columns: 1fr; }
-    .portrait { width: 104px; height: 124px; order: -1; }
+    .portrait { --portrait-w: 132px; order: -1; }
   }
 
   .statement {
@@ -472,7 +469,7 @@
           MIT Sloan School of Management
         </p>
       </div>
-      <img class="portrait" src="photo.jpg" alt="Charles Angelucci" width="132" height="158">
+      <img class="portrait" src="photo.jpg" alt="Charles Angelucci" width="170" height="204">
     </div>
 
     <p class="statement">
