@@ -23,8 +23,9 @@ the one-line research statement, and the portrait.
 
 ### Replacing the photo
 
-`photo.webp` (360×360) sits next to `index.html`. To swap it, overwrite that file
-— no markup change needed.
+`photo.jpg` (600×600, 41 KB) sits next to `index.html`. To swap it, overwrite that
+file — no markup change needed. Keep it square and compressed; a full-resolution
+export straight from a camera will be several megabytes and slow the page down.
 
 The slot is 132×158, so `object-fit: cover` trims the sides of a square source.
 If a future photo is off-centre, add `object-position` to the `.portrait` rule:
