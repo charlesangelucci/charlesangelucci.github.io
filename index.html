@@ -381,6 +381,18 @@
     max-width: 34rem;
   }
 
+  /* Press coverage, quieter than the materials row above it. Omit the whole
+     element for papers with no coverage rather than leaving it empty. */
+  .entry-coverage {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink-3);
+    margin: 0.35rem 0 0;
+  }
+  .entry-coverage a { color: var(--ink-2); }
+  .entry-coverage a:hover { color: var(--accent); }
+
   /* ---- per-paper materials --------------------------------------------- */
   .entry-links {
     display: flex;
@@ -533,6 +545,12 @@
                   <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3593002">Working paper</a>
                   <a href="https://drive.google.com/file/d/1YhkrTrZt_eRy7hBaGKqagzvd_BnhC4YE/view?usp=share_link">Online appendix</a>
                 </div>
+                <p class="entry-coverage">Coverage:
+                  <a href="https://www.niemanlab.org/2024/02/research-3-in-4-u-s-adults-can-discern-real-political-news-headlines-from-fake-ones/">Nieman Journalism Lab</a> &middot;
+                  <a href="https://journalistsresource.org/media/post-truth-fake-news-real-news/">Journalist&rsquo;s Resource</a> &middot;
+                  <a href="https://www.aeaweb.org/research/journalistic-truth-informed-voters">AEA Research Highlights</a> &middot;
+                  <a href="https://business.columbia.edu/research-brief/research-brief/fake-news-voters-misinformation">Columbia Business School</a>
+                </p>
               </div>
             </article>
 
@@ -556,6 +574,9 @@
                   <a href="https://www.nber.org/papers/w26782">NBER WP 26782</a>
                   <a href="https://drive.google.com/file/d/1fptADJ_Lqc_6DmVIu9GZGXD64-QH6lmb/view?usp=drive_link">Online appendix</a>
                 </div>
+                <p class="entry-coverage">Coverage:
+                  <a href="https://insights.som.yale.edu/insights/without-local-newspaper-americans-pay-less-attention-to-local-politics">Yale Insights</a>
+                </p>
               </div>
             </article>
 
@@ -579,6 +600,9 @@
                   <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_WP.pdf">Working paper</a>
                   <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_Online_Appendix.pdf">Online appendix</a>
                 </div>
+                <p class="entry-coverage">Coverage:
+                  <a href="https://www.aeaweb.org/research/merchant-towns-parliaments-england">AEA Research Highlights</a>
+                </p>
               </div>
             </article>
 
