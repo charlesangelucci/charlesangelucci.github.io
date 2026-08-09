@@ -436,6 +436,15 @@
   .prose { max-width: var(--measure); margin: 0; }
   .prose-note { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-3); }
 
+  /* CV sits in the masthead rather than in a section of its own, so it is
+     reachable without scrolling past the whole publication list. */
+  .cv-link {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    margin: 1.1rem 0 0;
+  }
+  .cv-link a { font-weight: 600; }
+
   .contact-list {
     max-width: var(--measure);
     display: grid;
@@ -483,7 +492,7 @@
     <nav aria-label="Sections">
       <a href="#research">Research</a>
       <a href="#teaching">Teaching</a>
-      <a href="#cv">CV</a>
+      <a href="angelucci-cv.pdf">CV</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -520,6 +529,11 @@
       I received my PhD from the <a href="https://www.tse-fr.eu/">Toulouse School of
       Economics</a> and was previously on the faculty at <a href="https://business.columbia.edu/">Columbia
       Business School</a>.
+    </p>
+
+    <p class="cv-link">
+      <a href="angelucci-cv.pdf">Download my CV</a>
+      <span class="prose-note">(PDF, April 2026)</span>
     </p>
 
     <ul class="affil">
@@ -893,22 +907,6 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <section id="cv">
-    <div class="section-grid">
-      <h2>CV</h2>
-      <div>
-        <!-- Served from this repo, so it cannot break. To update, overwrite
-             angelucci-cv.pdf and change the date below. -->
-        <p class="prose">
-          Full curriculum vitae, including grants and awards, academic visits,
-          presentations, and refereeing:
-          <a href="angelucci-cv.pdf">download&nbsp;PDF</a>
-          <span class="prose-note">(April 2026)</span>.
-        </p>
       </div>
     </div>
   </section>
