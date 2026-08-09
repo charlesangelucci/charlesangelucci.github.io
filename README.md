@@ -104,6 +104,9 @@ beyond 170px means re-exporting the photo larger than 600px wide.
 
 ## Search engines
 
-`index.html` carries a `noindex` tag near the top, marked `LAUNCH STEP`. While it
-is there, the site is reachable but will not appear in search results. Delete
-that one line to be indexed.
+The site is indexable — there is no `robots` meta tag. To take it back out of
+search results, add this inside `<head>`:
+
+```html
+<meta name="robots" content="noindex">
+```
