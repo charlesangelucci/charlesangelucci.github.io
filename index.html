@@ -170,7 +170,6 @@
     margin: 1.1rem 0 0;
     max-width: 30rem;
   }
-  .role strong { color: var(--ink); font-weight: 600; }
 
   /* PHOTO: photo.jpg, 720x720. Size is driven by --portrait-w above; the 5:6
      crop is taken by object-fit. Adjust object-position if a future photo
@@ -225,7 +224,7 @@
     color: var(--ink-2);
     border-top: 1px solid var(--rule);
   }
-  .affil li { display: flex; gap: 0.6rem; }
+  .affil li { display: flex; gap: 0.6rem; text-wrap: pretty; }
   .affil li::before {
     content: "";
     flex: 0 0 auto;
@@ -233,6 +232,19 @@
     margin-top: 0.62em;
     background: var(--accent);
     border-radius: 50%;
+  }
+
+  /* On phones these lines wrap; tighten them so a wrapped entry still reads
+     as one item rather than two. */
+  @media (max-width: 40rem) {
+    .affil {
+      font-size: 0.85rem;
+      gap: 0.55rem;
+      margin-top: 2rem;
+      padding-top: 1.1rem;
+    }
+    .affil li { gap: 0.5rem; line-height: 1.4; }
+    .affil li::before { margin-top: 0.5em; }
   }
 
   /* ---- sections -------------------------------------------------------- */
@@ -484,7 +496,7 @@
       <div>
         <h1>Charles Angelucci</h1>
         <p class="role">
-          <strong>Class of 1957 Career Development Assistant Professor</strong><br>
+          Class of 1957 Career Development Assistant Professor<br>
           Assistant Professor of Applied Economics<br>
           Sloan School of Management<br>
           Massachusetts Institute of Technology
