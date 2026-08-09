@@ -422,6 +422,7 @@
 
   /* ---- contact --------------------------------------------------------- */
   .prose { max-width: var(--measure); margin: 0; }
+  .prose-note { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-3); }
 
   .contact-list {
     max-width: var(--measure);
@@ -887,11 +888,13 @@
     <div class="section-grid">
       <h2>CV</h2>
       <div>
-        <!-- MIT Sloan hosts a CV dated December 2025, newer than the Google Drive file
-             your old site linked. Pick whichever you keep current. -->
+        <!-- Served from this repo, so it cannot break. To update, overwrite
+             angelucci-cv.pdf and change the date below. -->
         <p class="prose">
-          Full curriculum vitae, including education, appointments, grants, and service:
-          <a href="https://mitsloan.mit.edu/shared/ods/documents?PersonID=203976">download&nbsp;PDF</a>.
+          Full curriculum vitae, including grants and awards, academic visits,
+          presentations, and refereeing:
+          <a href="angelucci-cv.pdf">download&nbsp;PDF</a>
+          <span class="prose-note">(April 2026)</span>.
         </p>
       </div>
     </div>
