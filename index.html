@@ -433,34 +433,20 @@
   }
 
   /* ---- contact --------------------------------------------------------- */
-  .prose-note { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-3); }
-
-  /* CV sits in the masthead rather than in a section of its own, so it is
-     reachable without scrolling past the whole publication list. */
-  .cv-link {
+  /* Contact and profiles live in the masthead rather than a section at the
+     foot of the page, so nothing important requires scrolling to reach. */
+  .links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.3rem;
     font-family: var(--sans);
     font-size: 0.95rem;
-    margin: 1.1rem 0 0;
+    margin: 1.3rem 0 0;
   }
-  .cv-link a { font-weight: 600; }
-
-  .contact-list {
-    max-width: var(--measure);
-    display: grid;
-    gap: 0.8rem;
-    font-family: var(--sans);
-    font-size: 0.92rem;
-  }
-  .contact-list > div { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; }
-  .contact-key {
-    color: var(--ink-3);
-    font-size: 0.78rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding-top: 0.15em;
-  }
-  @media (max-width: 30rem) {
-    .contact-list > div { grid-template-columns: 1fr; gap: 0.1rem; }
+  .links-row a { font-weight: 600; }
+  .links-row .note { font-size: 0.82rem; color: var(--ink-3); }
+  @media (max-width: 40rem) {
+    .links-row { font-size: 0.9rem; gap: 0.3rem 1rem; }
   }
 
   footer {
@@ -468,8 +454,11 @@
     padding-block: 2rem 3.5rem;
     font-family: var(--sans);
     font-size: 0.78rem;
+    line-height: 1.7;
     color: var(--ink-3);
   }
+  footer a { color: var(--ink-2); }
+  footer a:hover { color: var(--accent); }
 
   /* ---- load-in --------------------------------------------------------- */
   @media (prefers-reduced-motion: no-preference) {
@@ -492,7 +481,6 @@
       <a href="#research">Research</a>
       <a href="#teaching">Teaching</a>
       <a href="angelucci-cv.pdf">CV</a>
-      <a href="#contact">Contact</a>
     </nav>
   </div>
 </div>
@@ -530,9 +518,11 @@
       Business School</a>.
     </p>
 
-    <p class="cv-link">
-      <a href="angelucci-cv.pdf">Download my CV</a>
-      <span class="prose-note">(PDF, April 2026)</span>
+    <p class="links-row">
+      <a href="mailto:cangeluc@mit.edu">cangeluc@mit.edu</a>
+      <span><a href="angelucci-cv.pdf">CV</a> <span class="note">(PDF, April&nbsp;2026)</span></span>
+      <a href="https://scholar.google.com/citations?user=TfpgtlgAAAAJ&amp;hl=en">Google Scholar</a>
+      <a href="https://orcid.org/0000-0002-1918-1863">ORCID</a>
     </p>
 
     <ul class="affil">
@@ -548,6 +538,34 @@
       <h2>Research</h2>
       <div>
 
+        <div class="group">
+          <h3>Work in Progress</h3>
+          <div class="entries">
+
+            <article class="entry">
+              <div class="year">&mdash;</div>
+              <div>
+                <p class="entry-title">Policymaking in the American States, 1787&ndash;2020</p>
+                <p class="entry-meta">with <a href="https://elliottash.com/">Elliott Ash</a> and <a href="https://nicolaslonguetmarx.github.io/">Nicolas Longuet-Marx</a></p>
+                <p class="entry-note">We construct a novel corpus covering the universe of statutes enacted by U.S. state legislatures and Congress since Independence and, using large language models, extract the distinct policies contained in these laws. We then estimate a model of policymaking to quantify how policies diffuse horizontally across states and vertically between state and federal governments.</p>
+              </div>
+            </article>
+
+            <article class="entry">
+              <div class="year">&mdash;</div>
+              <div>
+                <p class="entry-title">How Voters Make up Their Mind</p>
+                <p class="entry-meta">with Michel Gutmann, Oksana Kuznetsova, <a href="https://www.vincentpons.org/">Vincent Pons</a> and <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a></p>
+                <p class="entry-note">Using a panel survey of roughly 5,000 voters fielded during the run-up to the 2024 U.S. presidential election, in which we oversample the initially undecided, we estimate a dynamic model of how voters make up their minds. The model allows us to distinguish three forces behind the decline in undecidedness: changes in the relative appeal of the candidates, changes in voters&rsquo; uncertainty, and voters&rsquo; reluctance to declare a preference.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
         <div class="group">
           <h3>Publications</h3>
           <div class="entries">
@@ -828,35 +846,7 @@
 
           </div>
         </div>
-
-        <div class="group">
-          <h3>Work in Progress</h3>
-          <div class="entries">
-
-            <article class="entry">
-              <div class="year">&mdash;</div>
-              <div>
-                <p class="entry-title">Policymaking in the American States, 1787&ndash;2020</p>
-                <p class="entry-meta">with <a href="https://elliottash.com/">Elliott Ash</a> and <a href="https://nicolaslonguetmarx.github.io/">Nicolas Longuet-Marx</a></p>
-                <p class="entry-note">We construct a novel corpus covering the universe of statutes enacted by U.S. state legislatures and Congress since Independence and, using large language models, extract the distinct policies contained in these laws. We then estimate a model of policymaking to quantify how policies diffuse horizontally across states and vertically between state and federal governments.</p>
-              </div>
-            </article>
-
-            <article class="entry">
-              <div class="year">&mdash;</div>
-              <div>
-                <p class="entry-title">How Voters Make up Their Mind</p>
-                <p class="entry-meta">with Michel Gutmann, Oksana Kuznetsova, <a href="https://www.vincentpons.org/">Vincent Pons</a> and <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a></p>
-                <p class="entry-note">Using a panel survey of roughly 5,000 voters fielded during the run-up to the 2024 U.S. presidential election, in which we oversample the initially undecided, we estimate a dynamic model of how voters make up their minds. The model allows us to distinguish three forces behind the decline in undecidedness: changes in the relative appeal of the candidates, changes in voters&rsquo; uncertainty, and voters&rsquo; reluctance to declare a preference.</p>
-              </div>
-            </article>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
+</section>
 
   <section id="teaching">
     <div class="section-grid">
@@ -910,31 +900,10 @@
     </div>
   </section>
 
-  <section id="contact">
-    <div class="section-grid">
-      <h2>Contact</h2>
-      <div class="contact-list">
-        <div>
-          <span class="contact-key">Email</span>
-          <span><a href="mailto:cangeluc@mit.edu">cangeluc@mit.edu</a></span>
-        </div>
-        <div>
-          <span class="contact-key">Profiles</span>
-          <span><a href="https://mitmgmtfaculty.mit.edu/cangelucci/">MIT faculty page</a> &middot; <a href="https://scholar.google.com/citations?user=TfpgtlgAAAAJ&amp;hl=en">Google Scholar</a> &middot; <a href="https://orcid.org/0000-0002-1918-1863">ORCID</a></span>
-        </div>
-        <div>
-          <span class="contact-key">Office</span>
-          <span>E62-527</span>
-        </div>
-        <div>
-          <span class="contact-key">Post</span>
-          <span>MIT Sloan School of Management<br>100 Main Street, Cambridge, MA 02142</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>Charles Angelucci &middot; MIT Sloan School of Management</footer>
+  <footer>
+    <a href="https://mitmgmtfaculty.mit.edu/cangelucci/">MIT faculty page</a><br>
+    E62-527, 100 Main Street, Cambridge, MA 02142
+  </footer>
 
 </div>
 </body>
