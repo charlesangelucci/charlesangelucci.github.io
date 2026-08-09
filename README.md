@@ -3,10 +3,24 @@
 Personal academic website. One static file, no build step, no dependencies.
 
 ```
-index.html    the entire site (markup + styles inline)
-CNAME         the custom domain, read by GitHub Pages
-.nojekyll     tells GitHub Pages to serve files as-is
+index.html        the entire site (markup + styles inline)
+photo.jpg         headshot, 720x720
+angelucci-cv.pdf  the CV, served from here rather than Drive or MIT
+CNAME             the custom domain, read by GitHub Pages
+.nojekyll         tells GitHub Pages to serve files as-is
 ```
+
+## Updating the CV
+
+Overwrite `angelucci-cv.pdf`, then change the date shown beside the download
+link in `index.html`:
+
+```html
+<span class="prose-note">(April 2026)</span>
+```
+
+Serving it from this repo means the link cannot break when a Drive permission
+or an MIT URL changes — which is why it no longer points at either.
 
 ## Editing
 
