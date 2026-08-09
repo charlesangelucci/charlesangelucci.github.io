@@ -170,6 +170,14 @@
     margin: 1.1rem 0 0;
     max-width: 30rem;
   }
+  /* Street address sits under the institution it belongs to, a step quieter
+     so it reads as reference rather than part of the title. */
+  .role .addr {
+    display: inline-block;
+    margin-top: 0.35rem;
+    font-size: 0.84rem;
+    color: var(--ink-3);
+  }
 
   /* PHOTO: photo.jpg, 720x720. Size is driven by --portrait-w above; the 5:6
      crop is taken by object-fit. Adjust object-position if a future photo
@@ -477,7 +485,8 @@
           Class of 1957 Career Development Assistant Professor<br>
           Assistant Professor of Applied Economics<br>
           Sloan School of Management<br>
-          Massachusetts Institute of Technology
+          Massachusetts Institute of Technology<br>
+          <span class="addr">E62-527, 100 Main Street, Cambridge, MA 02142</span>
         </p>
       </div>
       <img class="portrait" src="photo.jpg" alt="Charles Angelucci" width="170" height="204">
