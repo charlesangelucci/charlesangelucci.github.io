@@ -87,6 +87,17 @@ Overwrite `photo.jpg` — no markup change needed. The photo is shown at its own
 To resize the portrait, change `width` in the `.portrait` rule (150px on
 desktop; the phone size is set in the `max-width: 30rem` block).
 
+## Visitor statistics
+
+Counts are at <https://angelucci.goatcounter.com> (GoatCounter, no cookies, so
+no consent banner). The two `<script>` tags at the bottom of `index.html` send
+them: the first counts page views, the second counts clicks on any `.pdf` link
+(CV, appendices), which appear in the dashboard as events named after the file.
+Delete both tags to switch counting off.
+
+Search traffic (what people searched to find the site) is in Google Search
+Console instead. Its verification tag in `<head>` must stay.
+
 ## Search engines
 
 The site is indexable — there is no `robots` meta tag. To take it back out of

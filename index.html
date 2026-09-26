@@ -357,5 +357,19 @@
   <footer>Last updated September 2026.</footer>
 
 </div>
+
+<!-- Visitor counts: https://angelucci.goatcounter.com (no cookies). -->
+<script data-goatcounter="https://angelucci.goatcounter.com/count"
+        async src="https://gc.zgo.at/count.js"></script>
+<script>
+  // Also count opens of the CV and appendix PDFs, which the snippet above
+  // cannot see because they are files, not pages. They show up in the
+  // dashboard as events named after the file.
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href$=".pdf"]');
+    if (!a || !window.goatcounter || !window.goatcounter.count) return;
+    window.goatcounter.count({ path: a.getAttribute('href'), title: a.textContent, event: true });
+  });
+</script>
 </body>
 </html>
