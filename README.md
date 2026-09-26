@@ -11,6 +11,7 @@ appendix-journalistic-truth.pdf            online appendices, served from here
 appendix-multi-project-collaborations.pdf    so the links cannot rot
 appendix-beliefs-political-news.pdf
 .nojekyll                                  tells GitHub Pages to serve files as-is
+sitemap.xml, robots.txt                    point search engines at the page
 ```
 
 The *Media Competition and News Diets* appendix is deliberately **not** here — it
