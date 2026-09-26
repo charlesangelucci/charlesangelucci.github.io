@@ -33,74 +33,58 @@ configured (source `main`, folder `/`, HTTPS enforced) — nothing to set up.
 
 ## Editing
 
-Everything is in `index.html`:
-
-- **Design tokens** — the `:root` block at the top. Colours, fonts, and layout
-  widths are custom properties; change one value and it updates everywhere, in
-  both light and dark mode.
-- **Content** — plain HTML below `<body>`.
+Everything is in `index.html`: a short `<style>` block at the top, then plain
+HTML. The design is deliberately plain (one serif font, blue links, no
+animation, no dark mode) so it reads like an ordinary academic homepage.
 
 ### Adding a paper
 
-Copy an existing `<article class="entry">` block and edit it. Papers live in
-three groups, in this order: Work in Progress, Working Papers, Publications.
+Copy an existing `<li>` inside a `<ul class="papers">` list and edit it. Papers
+live in three groups, in this order: Work in Progress, Working Papers,
+Publications.
 
 ```html
-<article class="entry">
-  <div class="year">2026</div>
-  <div>
-    <p class="entry-title"><a href="URL">Title of the Paper</a></p>
-    <p class="entry-meta">
-      with <a href="URL">Coauthor Name</a><br>
-      <span class="venue">Journal Name</span>
-      <span class="cite">16(2), May 2026, 62&ndash;102</span>
-    </p>
-    <details class="abstract">
-      <summary>Abstract</summary>
-      <p>Abstract text.</p>
-    </details>
-    <div class="entry-links">
-      <a href="URL">Journal</a>
-      <a href="URL">Working paper</a>
-    </div>
-    <p class="entry-coverage">Coverage: <a href="URL">Outlet</a></p>
-  </div>
-</article>
+<li>
+  <a class="paper-title" href="URL">Title of the Paper</a>, with <a href="URL">Coauthor Name</a>.<br>
+  <em>Journal Name</em>, 16(2), May 2026, 62&ndash;102.<br>
+  <span class="links">
+    <a href="URL">Journal</a> &middot;
+    <a href="URL">Working paper</a>
+  </span><br>
+  <span class="press">Press: <a href="URL">Outlet</a></span>
+  <details>
+    <summary>Abstract</summary>
+    <p>Abstract text.</p>
+  </details>
+</li>
 ```
 
-Every part below the title is optional — omit the whole element rather than
-leaving it empty. For an unpublished paper, replace `<span class="venue">` with
-`<span class="status is-live">R&amp;R, Journal Name</span>`.
+Every line below the title is optional; delete it (and the `<br>` before it)
+rather than leaving it empty. For an unpublished paper, replace the journal
+line with a status, e.g. `Revise and resubmit, <em>Journal Name</em>.<br>`.
 
 Use `&rsquo;` and `&mdash;` rather than pasting curly quotes and dashes directly.
+
+When you change anything, update the date in the footer:
+
+```html
+<footer>Last updated September 2026.</footer>
+```
 
 ### Updating the CV
 
 Overwrite `angelucci-cv.pdf`, then change the date beside the download link:
 
 ```html
-<span class="note">(PDF, April&nbsp;2026)</span>
+<a href="angelucci-cv.pdf">CV</a> (April 2026)
 ```
 
 ### Replacing the photo
 
-Overwrite `photo.jpg` — no markup change needed. The slot is 5:6 and the current
-file matches that ratio exactly, so nothing is cropped. A source of a different
-shape will be centre-cropped by `object-fit: cover`; if the result is badly
-framed, either crop it to 5:6 before saving or nudge it:
+Overwrite `photo.jpg` — no markup change needed. The photo is shown at its own shape (currently 5:6), so crop it before saving.
 
-```css
-.portrait { object-position: 50% 30%; }   /* shift the crop upward */
-```
-
-To resize the portrait, change one value in `:root`:
-
-```css
---portrait-w: 170px;   /* height follows automatically at 5:6 */
-```
-
-The phone size is set separately in the `max-width: 40rem` block. Going much
-beyond 170px means re-exporting the photo larger than 600px wide.
+To resize the portrait, change `width` in the `.portrait` rule (150px on
+desktop; the phone size is set in the `max-width: 30rem` block).
 
 ## Search engines
 

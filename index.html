@@ -17,874 +17,343 @@
 <meta property="og:image" content="https://charlesangelucci.github.io/photo.jpg">
 <meta name="twitter:card" content="summary">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231E4B3A'/><text y='72' x='50' text-anchor='middle' font-size='62' font-family='Palatino,Georgia,serif' fill='%23E6EDE8'>A</text></svg>">
-
 <style>
-  /* ---- tokens ---------------------------------------------------------- */
-  :root {
-    --paper:       #F7F7F4;
-    --surface:     #FFFFFF;
-    --ink:         #15191A;
-    --ink-2:       #545B56;
-    --ink-3:       #7B827C;
-    --rule:        #DFE0DA;
-    --rule-strong: #C4C7BE;
-    --accent:      #1E4B3A;
-    --accent-2:    #2C6B52;
-    --accent-soft: #E6EDE8;
-
-    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
-    --sans:  system-ui, "Segoe UI", -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --mono:  "Cascadia Mono", "SF Mono", ui-monospace, Consolas, "Liberation Mono", monospace;
-
-    --rail: 6.5rem;
-    --measure: 40rem;
-    --portrait-w: 170px;   /* portrait scales from this; ratio is fixed at 5:6 */
-
-    color-scheme: light dark;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper:       #121513;
-      --surface:     #191D1A;
-      --ink:         #E8EAE5;
-      --ink-2:       #A2AAA3;
-      --ink-3:       #79817A;
-      --rule:        #2B302C;
-      --rule-strong: #3C433D;
-      --accent:      #86BFA2;
-      --accent-2:    #A3D3B7;
-      --accent-soft: #1D2A23;
-    }
-  }
-
-  /* ---- base ------------------------------------------------------------ */
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
   body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
+    margin: 0;
+    background: #fff;
+    color: #222;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 17px;
-    line-height: 1.62;
-    margin: 0;
+    line-height: 1.55;
   }
-
-  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-  a:hover { color: var(--accent-2); }
-  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
-
-  .wrap {
-    max-width: calc(var(--rail) + var(--measure) + 3rem);
+  .page {
+    max-width: 46rem;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 2.5rem 1.25rem 3rem;
   }
 
-  .skip {
-    position: absolute;
-    left: -9999px;
-    background: var(--accent);
-    color: var(--paper);
-    padding: 0.5rem 1rem;
-    font-family: var(--sans);
-    font-size: 0.85rem;
-  }
-  .skip:focus { left: 0.5rem; top: 0.5rem; z-index: 20; }
+  a { color: #1a4b8c; }
+  a:hover { color: #0b2c57; }
 
-  /* ---- top bar --------------------------------------------------------- */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    background: var(--paper);
-    border-bottom: 1px solid var(--rule);
-  }
-  @supports (backdrop-filter: blur(8px)) {
-    .topbar {
-      background: color-mix(in srgb, var(--paper) 88%, transparent);
-      backdrop-filter: blur(8px);
-    }
-  }
-  .topbar .wrap {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 1.5rem;
-    padding-block: 0.85rem;
-  }
-  .topbar-name {
-    font-family: var(--sans);
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink);
-    text-decoration: none;
-  }
-  .topbar nav {
-    display: flex;
-    gap: 1.4rem;
-    font-family: var(--sans);
-    font-size: 0.82rem;
-  }
-  .topbar nav a { color: var(--ink-2); text-decoration: none; }
-  .topbar nav a:hover { color: var(--accent); }
-  @media (max-width: 33rem) {
-    .topbar-name { display: none; }
-    .topbar .wrap { justify-content: center; }
-    .topbar nav { gap: 1.15rem; }
-  }
-
-  /* ---- masthead -------------------------------------------------------- */
-  .masthead { padding-block: 4.5rem 3rem; }
-
-  .masthead-top {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 2.5rem;
-    align-items: start;
-  }
-
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(2.5rem, 6vw, 3.5rem);
-    line-height: 1.06;
-    letter-spacing: -0.015em;
-    font-weight: 400;
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  .role {
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    line-height: 1.5;
-    color: var(--ink-2);
-    margin: 1.1rem 0 0;
-    max-width: 30rem;
-  }
-  /* Street address sits under the institution it belongs to, a step quieter
-     so it reads as reference rather than part of the title. */
-  .role .addr {
-    display: inline-block;
-    margin-top: 0.35rem;
-    font-size: 0.84rem;
-    color: var(--ink-3);
-  }
-
-  /* PHOTO: photo.jpg, 720x720. Size is driven by --portrait-w above; the 5:6
-     crop is taken by object-fit. Adjust object-position if a future photo
-     is off-centre. */
+  /* header */
   .portrait {
-    width: var(--portrait-w);
-    aspect-ratio: 5 / 6;
+    float: right;
+    width: 150px;
     height: auto;
-    object-fit: cover;
-    background: var(--accent-soft);
-    border: 1px solid var(--rule-strong);
+    margin: 0.3rem 0 1rem 1.5rem;
   }
-  @media (max-width: 40rem) {
-    .masthead-top { grid-template-columns: 1fr; }
-    .portrait { --portrait-w: 132px; order: -1; }
+  h1 {
+    font-size: 2rem;
+    font-weight: normal;
+    margin: 0 0 0.6rem;
   }
+  .role { margin: 0; }
+  .contact { margin: 1rem 0 0; }
+  .statement { margin: 1.5rem 0 0; clear: both; }
+  .affil { margin: 1rem 0 0; }
 
-  .statement {
-    max-width: var(--measure);
-    margin: 2.4rem 0 0;
-    font-size: 1.16rem;
-    line-height: 1.55;
-  }
-
-  .affil {
-    list-style: none;
-    padding: 1.3rem 0 0;
-    margin: 2.4rem 0 0;
-    max-width: var(--measure);
-    display: grid;
-    gap: 0.45rem;
-    font-family: var(--sans);
-    font-size: 0.9rem;
-    color: var(--ink-2);
-    border-top: 1px solid var(--rule);
-  }
-  .affil li { display: flex; gap: 0.6rem; text-wrap: pretty; }
-  .affil li::before {
-    content: "";
-    flex: 0 0 auto;
-    width: 5px; height: 5px;
-    margin-top: 0.62em;
-    background: var(--accent);
-    border-radius: 50%;
-  }
-
-  /* On phones these lines wrap; tighten them so a wrapped entry still reads
-     as one item rather than two. */
-  @media (max-width: 40rem) {
-    .affil {
-      font-size: 0.85rem;
-      gap: 0.55rem;
-      margin-top: 2rem;
-      padding-top: 1.1rem;
-    }
-    .affil li { gap: 0.5rem; line-height: 1.4; }
-    .affil li::before { margin-top: 0.5em; }
-  }
-
-  /* ---- sections -------------------------------------------------------- */
-  section { padding-block: 3.2rem; border-top: 1px solid var(--rule); }
-
-  .section-grid {
-    display: grid;
-    grid-template-columns: var(--rail) minmax(0, 1fr);
-    gap: 0 2.5rem;
-  }
-  @media (max-width: 46rem) {
-    .section-grid { grid-template-columns: 1fr; gap: 0; }
-  }
-
+  /* sections */
   h2 {
-    font-family: var(--sans);
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin: 0.35rem 0 0;
-    position: sticky;
-    top: 4.2rem;
-    align-self: start;
+    font-size: 1.45rem;
+    font-weight: normal;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.2rem;
+    margin: 2.5rem 0 1rem;
   }
-  @media (max-width: 46rem) {
-    h2 { position: static; margin-bottom: 1.6rem; }
-  }
-
   h3 {
-    font-family: var(--sans);
-    font-size: 0.76rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    margin: 0 0 1.4rem;
-    padding-bottom: 0.55rem;
-    border-bottom: 1px solid var(--rule);
-  }
-  .group + .group { margin-top: 3rem; }
-
-  /* ---- entries --------------------------------------------------------- */
-  .entries { display: grid; gap: 1.9rem; max-width: var(--measure); }
-
-  .entry {
-    display: grid;
-    grid-template-columns: 3.1rem minmax(0, 1fr);
-    gap: 0 1.1rem;
-  }
-  .entry .year {
-    font-family: var(--mono);
-    font-variant-numeric: tabular-nums;
-    font-size: 0.78rem;
-    color: var(--ink-3);
-    padding-top: 0.32em;
-  }
-  @media (max-width: 30rem) {
-    .entry { grid-template-columns: 1fr; gap: 0.3rem; }
-    .entry .year { padding-top: 0; }
+    font-size: 1.1rem;
+    margin: 1.75rem 0 0.75rem;
   }
 
-  .entry-title {
-    font-family: var(--serif);
-    font-size: 1.08rem;
-    line-height: 1.4;
-    margin: 0;
-    font-weight: 400;
-    text-wrap: pretty;
-  }
-  .entry-title a { color: var(--ink); text-decoration-color: var(--rule-strong); }
-  .entry-title a:hover { color: var(--accent); text-decoration-color: currentColor; }
+  /* papers */
+  .papers { list-style: none; padding: 0; margin: 0; }
+  .papers > li { margin: 0 0 1.2rem; }
+  .paper-title { font-weight: bold; }
+  .links, .press { font-size: 0.9rem; }
+  .press { color: #555; }
+  .note { margin: 0.3rem 0 0; }
+  details { margin: 0.2rem 0 0; }
+  summary { cursor: pointer; font-size: 0.9rem; color: #1a4b8c; }
+  details p { margin: 0.4rem 0 0.2rem; font-size: 0.95rem; color: #444; }
 
-  .entry-meta {
-    font-family: var(--sans);
-    font-size: 0.855rem;
-    line-height: 1.5;
-    color: var(--ink-2);
-    margin: 0.3rem 0 0;
-  }
-  .entry-meta a { color: inherit; text-decoration-color: var(--rule-strong); }
-  .entry-meta a:hover { color: var(--accent); text-decoration-color: currentColor; }
-
-  .venue { color: var(--accent); font-weight: 600; }
-  .cite { font-variant-numeric: tabular-nums; }
-
-  .status {
-    display: inline-block;
-    font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    color: var(--ink-2);
-    border: 1px solid var(--rule-strong);
-    border-radius: 2px;
-    padding: 0.05rem 0.4rem;
-    white-space: nowrap;
-  }
-  .status.is-live { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
-
-  /* ---- abstract disclosure --------------------------------------------- */
-  .abstract { margin-top: 0.5rem; }
-  .abstract > summary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    cursor: pointer;
-    list-style: none;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    color: var(--accent);
-    width: fit-content;
-  }
-  .abstract > summary::-webkit-details-marker { display: none; }
-  .abstract > summary::before {
-    content: "";
-    width: 0; height: 0;
-    border-left: 4px solid currentColor;
-    border-top: 3.5px solid transparent;
-    border-bottom: 3.5px solid transparent;
-    transition: transform 0.15s ease;
-  }
-  .abstract[open] > summary::before { transform: rotate(90deg); }
-  @media (prefers-reduced-motion: reduce) {
-    .abstract > summary::before { transition: none; }
-  }
-  .abstract > summary:hover { color: var(--accent-2); }
-  .abstract > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  .abstract > p {
-    margin: 0.6rem 0 0;
-    padding-left: 0.9rem;
-    border-left: 2px solid var(--rule);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: var(--ink-2);
-  }
-
-  /* Short project description, used where there is no draft to link yet. */
-  .entry-note {
-    margin: 0.45rem 0 0;
-    padding-left: 0.9rem;
-    border-left: 2px solid var(--rule);
-    font-size: 0.95rem;
-    line-height: 1.55;
-    color: var(--ink-2);
-    max-width: 34rem;
-  }
-
-  /* Press coverage, quieter than the materials row above it. Omit the whole
-     element for papers with no coverage rather than leaving it empty. */
-  .entry-coverage {
-    font-family: var(--sans);
-    font-size: 0.8rem;
-    line-height: 1.5;
-    color: var(--ink-3);
-    margin: 0.35rem 0 0;
-  }
-  .entry-coverage a { color: var(--ink-2); }
-  .entry-coverage a:hover { color: var(--accent); }
-
-  /* ---- per-paper materials --------------------------------------------- */
-  .entry-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.9rem;
-    margin-top: 0.5rem;
-    font-family: var(--sans);
-    font-size: 0.8rem;
-  }
-
-  /* ---- teaching -------------------------------------------------------- */
-  .course { max-width: var(--measure); }
-  .course + .course { margin-top: 1.4rem; }
-  .course-name { font-size: 1.02rem; margin: 0; font-weight: 400; }
-  .course-meta {
-    font-family: var(--sans);
-    font-size: 0.845rem;
-    color: var(--ink-2);
-    margin: 0.15rem 0 0;
-  }
-  .award {
-    font-family: var(--sans);
-    font-size: 0.845rem;
-    color: var(--accent);
-    margin: 0.25rem 0 0;
-  }
-
-  /* ---- contact --------------------------------------------------------- */
-  /* Contact and profiles live in the masthead rather than a section at the
-     foot of the page, so nothing important requires scrolling to reach. */
-  .links-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem 1.3rem;
-    font-family: var(--sans);
-    font-size: 0.95rem;
-    margin: 1.3rem 0 0;
-  }
-  .links-row a { font-weight: 600; }
-  .links-row .note { font-size: 0.82rem; color: var(--ink-3); }
-  @media (max-width: 40rem) {
-    .links-row { font-size: 0.9rem; gap: 0.3rem 1rem; }
-  }
+  /* teaching */
+  .courses { padding-left: 1.2rem; margin: 0; }
+  .courses li { margin: 0 0 0.4rem; }
 
   footer {
-    border-top: 1px solid var(--rule);
-    padding-block: 2rem 3.5rem;
-    font-family: var(--sans);
-    font-size: 0.78rem;
-    line-height: 1.7;
-    color: var(--ink-3);
+    margin-top: 3rem;
+    font-size: 0.85rem;
+    color: #666;
   }
-  footer a { color: var(--ink-2); }
-  footer a:hover { color: var(--accent); }
 
-  /* ---- load-in --------------------------------------------------------- */
-  @media (prefers-reduced-motion: no-preference) {
-    .masthead > * { animation: rise 0.5s ease-out both; }
-    @keyframes rise {
-      from { opacity: 0; transform: translateY(6px); }
-      to   { opacity: 1; transform: none; }
-    }
+  @media (max-width: 30rem) {
+    .portrait { width: 110px; }
+    h1 { font-size: 1.7rem; }
   }
 </style>
 </head>
 <body>
+<div class="page">
 
-<a class="skip" href="#research">Skip to research</a>
-
-<div class="topbar">
-  <div class="wrap">
-    <a class="topbar-name" href="#top">Charles Angelucci</a>
-    <nav aria-label="Sections">
-      <a href="#research">Research</a>
-      <a href="#teaching">Teaching</a>
-      <a href="angelucci-cv.pdf">CV</a>
-    </nav>
-  </div>
-</div>
-
-<div id="top" class="wrap">
-
-  <header class="masthead">
-    <div class="masthead-top">
-      <div>
-        <h1>Charles Angelucci</h1>
-        <p class="role">
-          Class of 1957 Career Development Assistant Professor<br>
-          Assistant Professor of Applied Economics<br>
-          Sloan School of Management<br>
-          Massachusetts Institute of Technology<br>
-          <span class="addr">E62-527, 100 Main Street, Cambridge, MA 02142</span>
-        </p>
-      </div>
-      <img class="portrait" src="photo.jpg" alt="Charles Angelucci" width="170" height="204">
-    </div>
-
-    <p class="statement">
-      My research spans political economy and organizational economics, using
-      microeconomic theory, game theory, and empirical methods to address two
-      questions. First, what drives the production, consumption, and absorption
-      of political information? Second, how do interdependent actors govern their
-      relationships &mdash; from historical institutions such as medieval parliaments
-      to modern contexts such as those between buyers and suppliers &mdash; and how
-      does that shape what they achieve together?
+  <header>
+    <img class="portrait" src="photo.jpg" alt="Charles Angelucci" width="150" height="180">
+    <h1>Charles Angelucci</h1>
+    <p class="role">
+      Class of 1957 Career Development Assistant Professor<br>
+      Assistant Professor of Applied Economics<br>
+      Sloan School of Management<br>
+      Massachusetts Institute of Technology<br>
+      E62-527, 100 Main Street, Cambridge, MA 02142
     </p>
-
-    <p class="links-row">
-      <a href="mailto:cangeluc@mit.edu">cangeluc@mit.edu</a>
-      <span><a href="angelucci-cv.pdf">CV</a> <span class="note">(PDF, April&nbsp;2026)</span></span>
-      <a href="https://scholar.google.com/citations?user=TfpgtlgAAAAJ&amp;hl=en">Google Scholar</a>
-      <a href="https://orcid.org/0000-0002-1918-1863">ORCID</a>
+    <p class="contact">
+      Email: <a href="mailto:cangeluc@mit.edu">cangeluc@mit.edu</a><br>
+      <a href="angelucci-cv.pdf">CV</a> (April 2026) &middot;
+      <a href="https://scholar.google.com/citations?user=TfpgtlgAAAAJ&amp;hl=en">Google Scholar</a> &middot;
+      <a href="https://orcid.org/0000-0002-1918-1863">ORCID</a> &middot;
       <a href="https://mitmgmtfaculty.mit.edu/cangelucci/">MIT faculty page</a>
     </p>
-
-    <ul class="affil">
-      <li>Faculty Research Fellow, <a href="https://www.nber.org/people/charles_angelucci">NBER</a> (Political Economy)</li>
-      <li>Research Fellow, <a href="https://cepr.org/about/people/charles-angelucci">CEPR</a> (Organizational Economics; Political Economy)</li>
-      <li>Associate Editor, <a href="https://academic.oup.com/jeea"><em>Journal of the European Economic Association</em></a></li>
-      <li>Board Member, <a href="https://sioe.org/">Society for Institutional and Organizational Economics</a></li>
-    </ul>
   </header>
 
-  <section id="research">
-    <div class="section-grid">
-      <h2>Research</h2>
-      <div>
+  <p class="statement">
+    My research spans political economy and organizational economics, using
+    microeconomic theory, game theory, and empirical methods to address two
+    questions. First, what drives the production, consumption, and absorption
+    of political information? Second, how do interdependent actors govern their
+    relationships &mdash; from historical institutions such as medieval parliaments
+    to modern contexts such as those between buyers and suppliers &mdash; and how
+    does that shape what they achieve together?
+  </p>
 
-        <div class="group">
-          <h3>Work in Progress</h3>
-          <div class="entries">
+  <p class="affil">
+    Faculty Research Fellow, <a href="https://www.nber.org/people/charles_angelucci">NBER</a> (Political Economy)<br>
+    Research Fellow, <a href="https://cepr.org/about/people/charles-angelucci">CEPR</a> (Organizational Economics; Political Economy)<br>
+    Associate Editor, <a href="https://academic.oup.com/jeea"><em>Journal of the European Economic Association</em></a><br>
+    Board Member, <a href="https://sioe.org/">Society for Institutional and Organizational Economics</a>
+  </p>
 
-            <article class="entry">
-              <div class="year">&mdash;</div>
-              <div>
-                <p class="entry-title">Policymaking in the American States, 1787&ndash;2020</p>
-                <p class="entry-meta">with <a href="https://elliottash.com/">Elliott Ash</a> and <a href="https://nicolaslonguetmarx.github.io/">Nicolas Longuet-Marx</a></p>
-                <p class="entry-note">We construct a novel corpus covering the universe of statutes enacted by U.S. state legislatures and Congress since Independence and, using large language models, extract the distinct policies contained in these laws. We then estimate a model of policymaking to quantify how policies diffuse horizontally across states and vertically between state and federal governments.</p>
-              </div>
-            </article>
+  <h2 id="research">Research</h2>
 
-            <article class="entry">
-              <div class="year">&mdash;</div>
-              <div>
-                <p class="entry-title">How Voters Make up Their Mind</p>
-                <p class="entry-meta">with Michel Gutmann, Oksana Kuznetsova, <a href="https://www.vincentpons.org/">Vincent Pons</a> and <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a></p>
-                <p class="entry-note">Using a panel survey of roughly 5,000 voters fielded during the run-up to the 2024 U.S. presidential election, in which we oversample the initially undecided, we estimate a dynamic model of how voters make up their minds. The model allows us to distinguish three forces behind the decline in undecidedness: changes in the relative appeal of the candidates, changes in voters&rsquo; uncertainty, and voters&rsquo; reluctance to declare a preference.</p>
-              </div>
-            </article>
+  <h3>Work in Progress</h3>
+  <ul class="papers">
 
-          </div>
-        </div>
+    <li>
+      <span class="paper-title">Policymaking in the American States, 1787&ndash;2020</span>, with <a href="https://elliottash.com/">Elliott Ash</a> and <a href="https://nicolaslonguetmarx.github.io/">Nicolas Longuet-Marx</a>.
+      <details>
+        <summary>Description</summary>
+        <p>We construct a novel corpus covering the universe of statutes enacted by U.S. state legislatures and Congress since Independence and, using large language models, extract the distinct policies contained in these laws. We then estimate a model of policymaking to quantify how policies diffuse horizontally across states and vertically between state and federal governments.</p>
+      </details>
+    </li>
 
-      </div>
-    </div>
-  
-        <div class="group">
-          <h3>Working Papers</h3>
-          <div class="entries">
+    <li>
+      <span class="paper-title">How Voters Make up Their Mind</span>, with Michel Gutmann, Oksana Kuznetsova, <a href="https://www.vincentpons.org/">Vincent Pons</a> and <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a>.
+      <details>
+        <summary>Description</summary>
+        <p>Using a panel survey of roughly 5,000 voters fielded during the run-up to the 2024 U.S. presidential election, in which we oversample the initially undecided, we estimate a dynamic model of how voters make up their minds. The model allows us to distinguish three forces behind the decline in undecidedness: changes in the relative appeal of the candidates, changes in voters&rsquo; uncertainty, and voters&rsquo; reluctance to declare a preference.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2025</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://www.nber.org/papers/w32542">Organizing a Kingdom</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://sites.google.com/site/simonemeragliawebpage/homepage">Simone Meraglia</a> and <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/">Nico Voigtl&auml;nder</a> &middot;
-                  <span class="status is-live">R&amp;R, Review of Economic Studies</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We develop a framework to examine the organizational challenges faced by central rulers whose large territories require delegating administrative power to distant rural or urban elites. These elites have distinct policy preferences and vary in their economic importance. The ruler&rsquo;s organizational choices balance a trade-off: allowing elites to adapt to local and common shocks while maintaining coordination across the realm. We show that as urban economic potential grows, the ruler transfers administrative control over towns from landed to urban elites, particularly when all players&rsquo; preferences are aligned. When towns are administratively autonomous, the ruler summons them to central assemblies to ensure effective communication and coordination. This mechanism can explain how, during the Commercial Revolution, European merchant elites gained nationwide political clout in parliament by first obtaining control over urban administrations. We provide empirical evidence for our core mechanisms and discuss how the model applies to other historical dynamics (ancient Rome and Spanish America), as well as to contemporary organizational problems.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://www.nber.org/papers/w32542">NBER WP 32542</a>
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4840653">SSRN</a>
-                </div>
-              </div>
-            </article>
+  </ul>
 
-            <article class="entry">
-              <div class="year">2024</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://www.nber.org/papers/w32802">Beliefs About Political News in the Run-up to an Election</a>
-                </p>
-                <p class="entry-meta">
-                  with Michel Gutmann and <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a> &middot;
-                  <span class="status is-live">Reject &amp; Resubmit, AEJ: Economic Policy</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>This paper develops a model of news discernment to explore the influence of elections on the formation of partisan-driven parallel information universes. Using survey data from news quizzes administered during and outside the 2020 U.S. presidential election, the model shows that partisan congruence&rsquo;s impact on news discernment is substantially amplified during election periods. Outside an election, when faced with a true and a fake news story and asked to select the most likely true story, an individual is 4% more likely to choose the true story if it favors their party; in the days prior to the election, this increases to 11%.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://www.nber.org/papers/w32802">NBER WP 32802</a>
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895656">SSRN</a>
-                  <a href="appendix-beliefs-political-news.pdf">Online appendix</a>
-                </div>
-                <p class="entry-coverage">Coverage:
-                  <a href="https://mitsloan.mit.edu/ideas-made-to-matter/election-cycles-voters-tend-to-believe-news-confirms-their-biases">MIT Sloan Ideas Made to Matter</a>
-                </p>
-              </div>
-            </article>
+  <h3>Working Papers</h3>
+  <ul class="papers">
 
-            <article class="entry">
-              <div class="year">2024</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4362222">Job Scope and Motivation under Informal Incentives</a>
-                </p>
-                <p class="entry-meta">with <a href="https://sites.google.com/view/roiorzach/">Roi Orzach</a></p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We model the relationship between the number of tasks assigned to an employee and a firm&rsquo;s ability to motivate effort through informal performance-based bonuses. We show that assigning multiple tasks gives the firm a greater range of performance levels that can be rewarded. The firm takes advantage of this by designing equally motivating, flatter, and hence more credible incentives.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4362222">SSRN</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://www.nber.org/papers/w32542">Organizing a Kingdom</a>, with <a href="https://sites.google.com/site/simonemeragliawebpage/homepage">Simone Meraglia</a> and <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/">Nico Voigtl&auml;nder</a>.<br>
+      Revise and resubmit, <em>Review of Economic Studies</em>.<br>
+      <span class="links">
+        <a href="https://www.nber.org/papers/w32542">NBER WP 32542</a> &middot;
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4840653">SSRN</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We develop a framework to examine the organizational challenges faced by central rulers whose large territories require delegating administrative power to distant rural or urban elites. These elites have distinct policy preferences and vary in their economic importance. The ruler&rsquo;s organizational choices balance a trade-off: allowing elites to adapt to local and common shocks while maintaining coordination across the realm. We show that as urban economic potential grows, the ruler transfers administrative control over towns from landed to urban elites, particularly when all players&rsquo; preferences are aligned. When towns are administratively autonomous, the ruler summons them to central assemblies to ensure effective communication and coordination. This mechanism can explain how, during the Commercial Revolution, European merchant elites gained nationwide political clout in parliament by first obtaining control over urban administrations. We provide empirical evidence for our core mechanisms and discuss how the model applies to other historical dynamics (ancient Rome and Spanish America), as well as to contemporary organizational problems.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2021</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5087140">Knowledge Acquisition in a High-Stakes Environment: Evidence from the Covid-19 Pandemic</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://sites.google.com/view/amitkhandelwal">Amit K. Khandelwal</a>, <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a> and <a href="https://www.ashley-terese-swanson.com/">Ashley Swanson</a>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We measure Covid-19 knowledge at the onset of the pandemic. Information acquisition models predict that the precision of information increases in the benefits of improved decision-making and decreases in the costs of acquiring information. Indeed, we find that individuals with lower information costs are more informed, and that the benefits of information (proxied by mortality risk) predict information acquisition. High-risk individuals&rsquo; knowledge is initially lower, but converges, albeit slowly, to that of low-risk individuals within 43 days. These findings highlight the importance of information cost heterogeneity and suggest a role for policies that increase information access for high-cost, high-benefit groups.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5087140">SSRN</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://www.nber.org/papers/w32802">Beliefs About Political News in the Run-up to an Election</a>, with Michel Gutmann and <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a>.<br>
+      Reject and resubmit, <em>AEJ: Economic Policy</em>.<br>
+      <span class="links">
+        <a href="https://www.nber.org/papers/w32802">NBER WP 32802</a> &middot;
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4895656">SSRN</a> &middot;
+        <a href="appendix-beliefs-political-news.pdf">Online appendix</a>
+      </span><br>
+      <span class="press">Press:
+        <a href="https://mitsloan.mit.edu/ideas-made-to-matter/election-cycles-voters-tend-to-believe-news-confirms-their-biases">MIT Sloan Ideas Made to Matter</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>This paper develops a model of news discernment to explore the influence of elections on the formation of partisan-driven parallel information universes. Using survey data from news quizzes administered during and outside the 2020 U.S. presidential election, the model shows that partisan congruence&rsquo;s impact on news discernment is substantially amplified during election periods. Outside an election, when faced with a true and a fake news story and asked to select the most likely true story, an individual is 4% more likely to choose the true story if it favors their party; in the days prior to the election, this increases to 11%.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2021</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2785733">Self-Reporting Schemes and Employee Wrongdoing</a>
-                </p>
-                <p class="entry-meta">
-                  with Martijn Han &middot;
-                  <span class="status is-live">R&amp;R, Journal of Industrial Economics</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We study self-reporting schemes in the context of employee wrongdoing. We model the interaction between a regulator and a continuum of firms, where each firm has one employer and one employee. Within the scope of their employment, employees can take an action beneficial to themselves but harmful to their employer and society. Employers design employment contracts that either prevent the harmful act or tolerate it. We investigate whether corporate and individual sanctions should be reduced when employees confess to having committed the harmful act. In an extension, we let employers monitor their employees, and investigate whether corporate and individual sanctions should be reduced when employers disclose incriminating evidence. We use the resulting insights to discuss policy implications.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2785733">SSRN</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4362222">Job Scope and Motivation under Informal Incentives</a>, with <a href="https://sites.google.com/view/roiorzach/">Roi Orzach</a>.<br>
+      <span class="links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4362222">SSRN</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We model the relationship between the number of tasks assigned to an employee and a firm&rsquo;s ability to motivate effort through informal performance-based bonuses. We show that assigning multiple tasks gives the firm a greater range of performance levels that can be rewarded. The firm takes advantage of this by designing equally motivating, flatter, and hence more credible incentives.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2017</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2905367">Motivating Agents to Acquire Information</a>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>I investigate the optimal way of organizing and motivating the production of information by a team of agents. I compare two modes of production. In the &ldquo;team outputs&rdquo; setting, agents produce public information jointly and their individual contributions are indistinguishable. In the &ldquo;individual outputs&rdquo; setting, each agent produces her own public information. Directing agents to produce information jointly is commonly observed. Yet, agency theory stresses the difficulties associated with providing incentives based on team outputs and emphasizes the superiority of individual performance measures. This paper provides one reason why the joint production of information is common in practice, which does not rely on ad hoc technological advantages.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2905367">SSRN</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5087140">Knowledge Acquisition in a High-Stakes Environment: Evidence from the Covid-19 Pandemic</a>, with <a href="https://sites.google.com/view/amitkhandelwal">Amit K. Khandelwal</a>, <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a> and <a href="https://www.ashley-terese-swanson.com/">Ashley Swanson</a>.<br>
+      <span class="links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5087140">SSRN</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We measure Covid-19 knowledge at the onset of the pandemic. Information acquisition models predict that the precision of information increases in the benefits of improved decision-making and decreases in the costs of acquiring information. Indeed, we find that individuals with lower information costs are more informed, and that the benefits of information (proxied by mortality risk) predict information acquisition. High-risk individuals&rsquo; knowledge is initially lower, but converges, albeit slowly, to that of low-risk individuals within 43 days. These findings highlight the importance of information cost heterogeneity and suggest a role for policies that increase information access for high-cost, high-benefit groups.</p>
+      </details>
+    </li>
 
-          </div>
-        </div>
+    <li>
+      <a class="paper-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2785733">Self-Reporting Schemes and Employee Wrongdoing</a>, with Martijn Han.<br>
+      Revise and resubmit, <em>Journal of Industrial Economics</em>.<br>
+      <span class="links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2785733">SSRN</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We study self-reporting schemes in the context of employee wrongdoing. We model the interaction between a regulator and a continuum of firms, where each firm has one employer and one employee. Within the scope of their employment, employees can take an action beneficial to themselves but harmful to their employer and society. Employers design employment contracts that either prevent the harmful act or tolerate it. We investigate whether corporate and individual sanctions should be reduced when employees confess to having committed the harmful act. In an extension, we let employers monitor their employees, and investigate whether corporate and individual sanctions should be reduced when employers disclose incriminating evidence. We use the resulting insights to discuss policy implications.</p>
+      </details>
+    </li>
 
-        <div class="group">
-          <h3>Publications</h3>
-          <div class="entries">
+    <li>
+      <a class="paper-title" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2905367">Motivating Agents to Acquire Information</a>.<br>
+      <span class="links">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2905367">SSRN</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>I investigate the optimal way of organizing and motivating the production of information by a team of agents. I compare two modes of production. In the &ldquo;team outputs&rdquo; setting, agents produce public information jointly and their individual contributions are indistinguishable. In the &ldquo;individual outputs&rdquo; setting, each agent produces her own public information. Directing agents to produce information jointly is commonly observed. Yet, agency theory stresses the difficulties associated with providing incentives based on team outputs and emphasizes the superiority of individual performance measures. This paper provides one reason why the joint production of information is common in practice, which does not rely on ad hoc technological advantages.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2024</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://doi.org/10.1257/aer.20211003">Is Journalistic Truth Dead? Measuring How Informed Voters Are about Political News</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a><br>
-                  <span class="venue">American Economic Review</span>
-                  <span class="cite">114(4), April 2024, 887&ndash;925</span> &middot; lead article
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>To investigate general patterns in news information in the United States, we combine a protocol for identifying major political news stories, 11 monthly surveys with 15,000 participants, and a model of news discernment. When confronted with a true and a fake news story, 47 percent of subjects confidently choose the true story, 3 percent confidently choose the fake story, and the remaining half are uncertain. Socioeconomic differences are associated with large variations in the probability of selecting the true news story. Partisan congruence between an individual and a news story matters, but its impact is up to an order of magnitude smaller.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://doi.org/10.1257/aer.20211003">Journal</a>
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3593002">Working paper</a>
-                  <a href="appendix-journalistic-truth.pdf">Online appendix</a>
-                </div>
-                <p class="entry-coverage">Coverage:
-                  <a href="https://www.niemanlab.org/2024/02/research-3-in-4-u-s-adults-can-discern-real-political-news-headlines-from-fake-ones/">Nieman Journalism Lab</a> &middot;
-                  <a href="https://journalistsresource.org/media/post-truth-fake-news-real-news/">Journalist&rsquo;s Resource</a> &middot;
-                  <a href="https://www.aeaweb.org/research/journalistic-truth-informed-voters">AEA Research Highlights</a> &middot;
-                  <a href="https://business.columbia.edu/research-brief/research-brief/fake-news-voters-misinformation">Columbia Business School</a>
-                </p>
-              </div>
-            </article>
+  </ul>
 
-            <article class="entry">
-              <div class="year">2024</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://doi.org/10.1257/mic.20220163">Media Competition and News Diets</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://juliacage.com/">Julia Cag&eacute;</a> and <a href="https://sites.google.com/view/msinkinson">Michael Sinkinson</a><br>
-                  <span class="venue">American Economic Journal: Microeconomics</span>
-                  <span class="cite">16(2), May 2024, 62&ndash;102</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>Technological innovations like broadcast television and the internet challenge local newspapers&rsquo; business model of bundling their local content with third-party content, such as wire national news. We examine how the entry of television affected newspapers and news diets in the United States. We construct a dataset of newspapers&rsquo; economic performance and content choices from 1944 to 1964 and exploit quasi-random variation in the rollout of television to show its negative impact in the readership and advertising markets. Newspapers responded by reducing content, particularly local news. We tie this change to increased party vote share congruence between congressional and presidential elections.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://doi.org/10.1257/mic.20220163">Journal</a>
-                  <a href="https://www.nber.org/papers/w26782">NBER WP 26782</a>
-                  <!-- Kept on Drive: the PDF is 32 MB, too large to carry in git history. -->
-                  <a href="https://drive.google.com/file/d/1fptADJ_Lqc_6DmVIu9GZGXD64-QH6lmb/view?usp=drive_link">Online appendix</a>
-                  <a href="https://cepr.org/voxeu/columns/technological-progress-business-model-local-news-and-nationalisation-our-politics">VoxEU column</a>
-                </div>
-                <p class="entry-coverage">Coverage:
-                  <a href="https://insights.som.yale.edu/insights/without-local-newspaper-americans-pay-less-attention-to-local-politics">Yale Insights</a>
-                </p>
-              </div>
-            </article>
+  <h3>Publications</h3>
+  <ul class="papers">
 
-            <article class="entry">
-              <div class="year">2022</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://doi.org/10.1257/aer.20200885">How Merchant Towns Shaped Parliaments: From the Norman Conquest of England to the Great Reform Act</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://sites.google.com/site/simonemeragliawebpage/homepage">Simone Meraglia</a> and <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/">Nico Voigtl&auml;nder</a><br>
-                  <span class="venue">American Economic Review</span>
-                  <span class="cite">112(10), October 2022, 3441&ndash;87</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We study the emergence of urban self-governance in the late medieval period. We focus on England after the Norman Conquest of 1066, building a novel comprehensive dataset of 554 medieval towns. During the Commercial Revolution (twelfth to thirteenth centuries), many merchant towns obtained Farm Grants: the right of self-governed tax collection and law enforcement. Self-governance, in turn, was a stepping stone for parliamentary representation: Farm Grant towns were much more likely to be summoned directly to the medieval English Parliament than otherwise similar towns. We also show that self-governed towns strengthened the role of Parliament and shaped national institutions over the subsequent centuries.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://doi.org/10.1257/aer.20200885">Journal</a>
-                  <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_WP.pdf">Working paper</a>
-                  <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_Online_Appendix.pdf">Online appendix</a>
-                </div>
-                <p class="entry-coverage">Coverage:
-                  <a href="https://www.aeaweb.org/research/merchant-towns-parliaments-england">AEA Research Highlights</a>
-                </p>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://www.nber.org/papers/w35460">Multi-Project Collaborations</a>, with <a href="https://sites.google.com/view/roiorzach/">Roi Orzach</a>.<br>
+      <em>Journal of Political Economy Microeconomics</em>, forthcoming.<br>
+      <span class="links">
+        <a href="https://www.nber.org/papers/w35460">NBER WP 35460</a> &middot;
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4765066">SSRN</a> &middot;
+        <a href="appendix-multi-project-collaborations.pdf">Online appendix</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We analyze collaborative experimentation across multiple independent domains. Each domain contains infinitely many potential projects with asymmetric benefits. In each period and in each domain, two players can idle, jointly explore a new project, or jointly exploit a known one, with voluntary transfers. For intermediate discount factors, treating domains as independent during experimentation is suboptimal. The optimal experimentation policy exhibits common features of collaborative experimentation: lengthy exploration, temporary project exploitation, recall of past projects, and inefficient initial or terminal idling within certain domains. We connect these findings to research on buyer-supplier dynamics and persistent productivity differences.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2022</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://doi.org/10.1111/iere.12567">Petty Corruption and Citizen Reports</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://sites.google.com/site/antoniorussoweb/">Antonio Russo</a><br>
-                  <span class="venue">International Economic Review</span>
-                  <span class="cite">63(2), May 2022, 831&ndash;848</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>When offering incentive schemes to low-ranking officials, a tension exists between the dual goals of enforcing regulations and preventing corruption. Recent efforts to curb abuses have inspired government interest in using new communication technologies to collect information directly from citizens. We propose a model where a corruptible official is tasked with recommending the government to grant or deny the permit an entrepreneur needs to undertake production. The government tolerates corruption when it does not communicate directly with the entrepreneur. A simple scheme whereby the entrepreneur can report her own noncompliance to the government deters corruption and improves regulatory enforcement.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://doi.org/10.1111/iere.12567">Journal</a>
-                  <a href="https://dspace.mit.edu/bitstream/handle/1721.1/142666/Int%20Economic%20Review%20-%202022%20-%20Angelucci%20-%20PETTY%20CORRUPTION%20AND%20CITIZEN%20REPORTS.pdf?sequence=1&amp;isAllowed=y">PDF</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://doi.org/10.1257/aer.20211003">Is Journalistic Truth Dead? Measuring How Informed Voters Are about Political News</a>, with <a href="https://www.columbia.edu/~ap3116/">Andrea Prat</a>.<br>
+      <em>American Economic Review</em>, 114(4), April 2024, 887&ndash;925. Lead article.<br>
+      <span class="links">
+        <a href="https://doi.org/10.1257/aer.20211003">Journal</a> &middot;
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3593002">Working paper</a> &middot;
+        <a href="appendix-journalistic-truth.pdf">Online appendix</a>
+      </span><br>
+      <span class="press">Press:
+        <a href="https://www.niemanlab.org/2024/02/research-3-in-4-u-s-adults-can-discern-real-political-news-headlines-from-fake-ones/">Nieman Journalism Lab</a>,
+        <a href="https://journalistsresource.org/media/post-truth-fake-news-real-news/">Journalist&rsquo;s Resource</a>,
+        <a href="https://www.aeaweb.org/research/journalistic-truth-informed-voters">AEA Research Highlights</a>,
+        <a href="https://business.columbia.edu/research-brief/research-brief/fake-news-voters-misinformation">Columbia Business School</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>To investigate general patterns in news information in the United States, we combine a protocol for identifying major political news stories, 11 monthly surveys with 15,000 participants, and a model of news discernment. When confronted with a true and a fake news story, 47 percent of subjects confidently choose the true story, 3 percent confidently choose the fake story, and the remaining half are uncertain. Socioeconomic differences are associated with large variations in the probability of selecting the true news story. Partisan congruence between an individual and a news story matters, but its impact is up to an order of magnitude smaller.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">2019</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://doi.org/10.1257/mic.20170306">Newspapers in Times of Low Advertising Revenues</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://juliacage.com/">Julia Cag&eacute;</a><br>
-                  <span class="venue">American Economic Journal: Microeconomics</span>
-                  <span class="cite">11(3), August 2019, 319&ndash;64</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We model the consequences on newspapers&rsquo; content and prices of a reduction in advertising revenues. Newspapers choose the size of their newsroom, and readers are heterogeneous in their ideal amount of journalistic-intensive content. We show that a reduction in advertising revenues lowers newspapers&rsquo; incentives to produce journalistic-intensive content. We also build a unique dataset on French newspapers between 1960 and 1974 and perform a difference-in-differences analysis exploiting the introduction of advertising on television, which affected national newspapers more severely than local ones. We find robust evidence of a decrease in the amount of journalistic-intensive content produced and the subscription price.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://doi.org/10.1257/mic.20170306">Journal</a>
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2335743">Working paper</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://doi.org/10.1257/mic.20220163">Media Competition and News Diets</a>, with <a href="https://juliacage.com/">Julia Cag&eacute;</a> and <a href="https://sites.google.com/view/msinkinson">Michael Sinkinson</a>.<br>
+      <em>American Economic Journal: Microeconomics</em>, 16(2), May 2024, 62&ndash;102.<br>
+      <span class="links">
+        <a href="https://doi.org/10.1257/mic.20220163">Journal</a> &middot;
+        <a href="https://www.nber.org/papers/w26782">NBER WP 26782</a> &middot;
+        <!-- Kept on Drive: the PDF is 32 MB, too large to carry in git history. -->
+        <a href="https://drive.google.com/file/d/1fptADJ_Lqc_6DmVIu9GZGXD64-QH6lmb/view?usp=drive_link">Online appendix</a> &middot;
+        <a href="https://cepr.org/voxeu/columns/technological-progress-business-model-local-news-and-nationalisation-our-politics">VoxEU column</a>
+      </span><br>
+      <span class="press">Press:
+        <a href="https://insights.som.yale.edu/insights/without-local-newspaper-americans-pay-less-attention-to-local-politics">Yale Insights</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>Technological innovations like broadcast television and the internet challenge local newspapers&rsquo; business model of bundling their local content with third-party content, such as wire national news. We examine how the entry of television affected newspapers and news diets in the United States. We construct a dataset of newspapers&rsquo; economic performance and content choices from 1944 to 1964 and exploit quasi-random variation in the rollout of television to show its negative impact in the readership and advertising markets. Newspapers responded by reducing content, particularly local news. We tie this change to increased party vote share congruence between congressional and presidential elections.</p>
+      </details>
+    </li>
 
-            <article class="entry">
-              <div class="year">&mdash;</div>
-              <div>
-                <p class="entry-title">
-                  <a href="https://www.nber.org/papers/w35460">Multi-Project Collaborations</a>
-                </p>
-                <p class="entry-meta">
-                  with <a href="https://sites.google.com/view/roiorzach/">Roi Orzach</a><br>
-                  <span class="venue">Journal of Political Economy Microeconomics</span> &middot; <span class="status">Accepted</span>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>We analyze collaborative experimentation across multiple independent domains. Each domain contains infinitely many potential projects with asymmetric benefits. In each period and in each domain, two players can idle, jointly explore a new project, or jointly exploit a known one, with voluntary transfers. For intermediate discount factors, treating domains as independent during experimentation is suboptimal. The optimal experimentation policy exhibits common features of collaborative experimentation: lengthy exploration, temporary project exploitation, recall of past projects, and inefficient initial or terminal idling within certain domains. We connect these findings to research on buyer-supplier dynamics and persistent productivity differences.</p>
-                </details>
-                <div class="entry-links">
-                  <a href="https://www.nber.org/papers/w35460">NBER WP 35460</a>
-                  <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4765066">SSRN</a>
-                  <a href="appendix-multi-project-collaborations.pdf">Online appendix</a>
-                </div>
-              </div>
-            </article>
+    <li>
+      <a class="paper-title" href="https://doi.org/10.1257/aer.20200885">How Merchant Towns Shaped Parliaments: From the Norman Conquest of England to the Great Reform Act</a>, with <a href="https://sites.google.com/site/simonemeragliawebpage/homepage">Simone Meraglia</a> and <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/">Nico Voigtl&auml;nder</a>.<br>
+      <em>American Economic Review</em>, 112(10), October 2022, 3441&ndash;87.<br>
+      <span class="links">
+        <a href="https://doi.org/10.1257/aer.20200885">Journal</a> &middot;
+        <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_WP.pdf">Working paper</a> &middot;
+        <a href="https://www.anderson.ucla.edu/faculty_pages/nico.v/Research/AMV_Online_Appendix.pdf">Online appendix</a>
+      </span><br>
+      <span class="press">Press:
+        <a href="https://www.aeaweb.org/research/merchant-towns-parliaments-england">AEA Research Highlights</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We study the emergence of urban self-governance in the late medieval period. We focus on England after the Norman Conquest of 1066, building a novel comprehensive dataset of 554 medieval towns. During the Commercial Revolution (twelfth to thirteenth centuries), many merchant towns obtained Farm Grants: the right of self-governed tax collection and law enforcement. Self-governance, in turn, was a stepping stone for parliamentary representation: Farm Grant towns were much more likely to be summoned directly to the medieval English Parliament than otherwise similar towns. We also show that self-governed towns strengthened the role of Parliament and shaped national institutions over the subsequent centuries.</p>
+      </details>
+    </li>
 
-          </div>
-        </div>
-</section>
+    <li>
+      <a class="paper-title" href="https://doi.org/10.1111/iere.12567">Petty Corruption and Citizen Reports</a>, with <a href="https://sites.google.com/site/antoniorussoweb/">Antonio Russo</a>.<br>
+      <em>International Economic Review</em>, 63(2), May 2022, 831&ndash;848.<br>
+      <span class="links">
+        <a href="https://doi.org/10.1111/iere.12567">Journal</a> &middot;
+        <a href="https://dspace.mit.edu/bitstream/handle/1721.1/142666/Int%20Economic%20Review%20-%202022%20-%20Angelucci%20-%20PETTY%20CORRUPTION%20AND%20CITIZEN%20REPORTS.pdf?sequence=1&amp;isAllowed=y">PDF</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>When offering incentive schemes to low-ranking officials, a tension exists between the dual goals of enforcing regulations and preventing corruption. Recent efforts to curb abuses have inspired government interest in using new communication technologies to collect information directly from citizens. We propose a model where a corruptible official is tasked with recommending the government to grant or deny the permit an entrepreneur needs to undertake production. The government tolerates corruption when it does not communicate directly with the entrepreneur. A simple scheme whereby the entrepreneur can report her own noncompliance to the government deters corruption and improves regulatory enforcement.</p>
+      </details>
+    </li>
 
-  <section id="teaching">
-    <div class="section-grid">
-      <h2>Teaching</h2>
-      <div>
+    <li>
+      <a class="paper-title" href="https://doi.org/10.1257/mic.20170306">Newspapers in Times of Low Advertising Revenues</a>, with <a href="https://juliacage.com/">Julia Cag&eacute;</a>.<br>
+      <em>American Economic Journal: Microeconomics</em>, 11(3), August 2019, 319&ndash;64.<br>
+      <span class="links">
+        <a href="https://doi.org/10.1257/mic.20170306">Journal</a> &middot;
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2335743">Working paper</a>
+      </span>
+      <details>
+        <summary>Abstract</summary>
+        <p>We model the consequences on newspapers&rsquo; content and prices of a reduction in advertising revenues. Newspapers choose the size of their newsroom, and readers are heterogeneous in their ideal amount of journalistic-intensive content. We show that a reduction in advertising revenues lowers newspapers&rsquo; incentives to produce journalistic-intensive content. We also build a unique dataset on French newspapers between 1960 and 1974 and perform a difference-in-differences analysis exploiting the introduction of advertising on television, which affected national newspapers more severely than local ones. We find robust evidence of a decrease in the amount of journalistic-intensive content produced and the subscription price.</p>
+      </details>
+    </li>
 
-        <div class="group">
-          <h3>MIT</h3>
+  </ul>
 
-          <div class="course">
-            <p class="course-name">Economic Analysis for Business Decisions (15.011)</p>
-            <p class="course-meta">MBA core &middot; Sloan &middot; Fall 2025, Fall 2026</p>
-          </div>
-          <div class="course">
-            <p class="course-name">Managing the Modern Organization (15.903)</p>
-            <p class="course-meta">MBA &middot; Sloan &middot; 2021&ndash;2025</p>
-          </div>
-          <div class="course">
-            <p class="course-name">Organizational Economics (14.282)</p>
-            <p class="course-meta">PhD &middot; Department of Economics and Sloan &middot; with <a href="https://web.mit.edu/rgibbons/www/">Robert Gibbons</a> &middot; 2020&ndash;2026</p>
-          </div>
-          <div class="course">
-            <p class="course-name">Advanced Topics in Organizational Economics II (14.284)</p>
-            <p class="course-meta">PhD &middot; Department of Economics and Sloan &middot; with <a href="https://web.mit.edu/rgibbons/www/">Robert Gibbons</a> &middot; 2021&ndash;2026</p>
-          </div>
-          <div class="course">
-            <p class="course-name">Economics and Politics of Media, Internet, and Social Networking Platforms (15.SS1)</p>
-            <p class="course-meta">PhD &middot; Sloan &middot; with <a href="https://alexeymakarin.github.io/">Alexey Makarin</a> &middot; 2024&ndash;2025</p>
-          </div>
-          <div class="course">
-            <p class="course-name">Organizational Economics (15.039)</p>
-            <p class="course-meta">Undergraduate &middot; Sloan &middot; 2021</p>
-          </div>
-        </div>
+  <h2 id="teaching">Teaching</h2>
 
-        <div class="group">
-          <h3>Columbia Business School</h3>
+  <h3>MIT</h3>
+  <ul class="courses">
+    <li>Economic Analysis for Business Decisions (15.011), MBA core, Fall 2025 and Fall 2026</li>
+    <li>Managing the Modern Organization (15.903), MBA, 2021&ndash;2025</li>
+    <li>Organizational Economics (14.282), PhD, with <a href="https://web.mit.edu/rgibbons/www/">Robert Gibbons</a>, 2020&ndash;2026</li>
+    <li>Advanced Topics in Organizational Economics II (14.284), PhD, with <a href="https://web.mit.edu/rgibbons/www/">Robert Gibbons</a>, 2021&ndash;2026</li>
+    <li>Economics and Politics of Media, Internet, and Social Networking Platforms (15.SS1), PhD, with <a href="https://alexeymakarin.github.io/">Alexey Makarin</a>, 2024&ndash;2025</li>
+    <li>Organizational Economics (15.039), Undergraduate, 2021</li>
+  </ul>
 
-          <div class="course">
-            <p class="course-name">Economics of Strategic Behavior</p>
-            <p class="course-meta">MBA and EMBA &middot; 2015&ndash;2019</p>
-            <p class="award">Dean&rsquo;s Award for Teaching Excellence in an Elective Course</p>
-          </div>
-          <div class="course">
-            <p class="course-name">Organizational Economics</p>
-            <p class="course-meta">PhD &middot; 2016&ndash;2018</p>
-          </div>
-        </div>
+  <h3>Columbia Business School</h3>
+  <ul class="courses">
+    <li>Economics of Strategic Behavior, MBA and EMBA, 2015&ndash;2019 (Dean&rsquo;s Award for Teaching Excellence in an Elective Course)</li>
+    <li>Organizational Economics, PhD, 2016&ndash;2018</li>
+  </ul>
 
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    Sloan School of Management, Massachusetts Institute of Technology<br>
-    E62-527, 100 Main Street, Cambridge, MA 02142
-  </footer>
+  <footer>Last updated September 2026.</footer>
 
 </div>
 </body>
